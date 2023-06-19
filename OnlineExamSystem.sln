@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExamSystem.API", "src\OnlineExamSystem.API\OnlineExamSystem.API.csproj", "{B1DBD6FD-7362-4B95-9285-EAF5FF9E7E5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0947375F-68F9-4680-A919-2840CD7A9CF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExamSystem.Services", "src\OnlineExamSystem.Services\OnlineExamSystem.Services.csproj", "{73CBBCC8-84FF-4F34-9DDC-BAD2A24F7264}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.DAL", "src\OnlineExamSystem.DAL\OnlineExamSystem.DAL.csproj", "{567D65E7-E549-4D5D-AEA9-2E3000F8DF7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.Data", "src\OnlineExamSystem.Data\OnlineExamSystem.Data.csproj", "{82703AA8-4FED-41AC-B326-89B680993EFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.Domain", "src\OnlineExamSystem.Domain\OnlineExamSystem.Domain.csproj", "{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineExamSystem.Contract", "src\OnlineExamSystem.Contract\OnlineExamSystem.Contract.csproj", "{A8F79640-61C7-4268-8659-951E78EB8754}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1DBD6FD-7362-4B95-9285-EAF5FF9E7E5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1DBD6FD-7362-4B95-9285-EAF5FF9E7E5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1DBD6FD-7362-4B95-9285-EAF5FF9E7E5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1DBD6FD-7362-4B95-9285-EAF5FF9E7E5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CBBCC8-84FF-4F34-9DDC-BAD2A24F7264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CBBCC8-84FF-4F34-9DDC-BAD2A24F7264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CBBCC8-84FF-4F34-9DDC-BAD2A24F7264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CBBCC8-84FF-4F34-9DDC-BAD2A24F7264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567D65E7-E549-4D5D-AEA9-2E3000F8DF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567D65E7-E549-4D5D-AEA9-2E3000F8DF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567D65E7-E549-4D5D-AEA9-2E3000F8DF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567D65E7-E549-4D5D-AEA9-2E3000F8DF7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82703AA8-4FED-41AC-B326-89B680993EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82703AA8-4FED-41AC-B326-89B680993EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82703AA8-4FED-41AC-B326-89B680993EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82703AA8-4FED-41AC-B326-89B680993EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F79640-61C7-4268-8659-951E78EB8754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F79640-61C7-4268-8659-951E78EB8754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F79640-61C7-4268-8659-951E78EB8754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F79640-61C7-4268-8659-951E78EB8754}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1DBD6FD-7362-4B95-9285-EAF5FF9E7E5C} = {0947375F-68F9-4680-A919-2840CD7A9CF7}
+		{73CBBCC8-84FF-4F34-9DDC-BAD2A24F7264} = {0947375F-68F9-4680-A919-2840CD7A9CF7}
+		{567D65E7-E549-4D5D-AEA9-2E3000F8DF7E} = {0947375F-68F9-4680-A919-2840CD7A9CF7}
+		{82703AA8-4FED-41AC-B326-89B680993EFF} = {0947375F-68F9-4680-A919-2840CD7A9CF7}
+		{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B} = {0947375F-68F9-4680-A919-2840CD7A9CF7}
+		{A8F79640-61C7-4268-8659-951E78EB8754} = {0947375F-68F9-4680-A919-2840CD7A9CF7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D66B1DF3-D99E-4161-8DD9-D9A389479D00}
+	EndGlobalSection
+EndGlobal

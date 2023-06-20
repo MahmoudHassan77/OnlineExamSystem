@@ -1,4 +1,4 @@
-﻿namespace OnlineExamSystem.Domain.Identity;
+﻿namespace OnlineExamSystem.Domain.Entities;
 public class TokenInfo
 {
     public int Id { get; set; }

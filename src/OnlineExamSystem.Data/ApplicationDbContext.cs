@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineExamSystem.Data.Configs;
-using OnlineExamSystem.Domain.Entities;
+using OnlineExamSystem.Domain.Identity;
 using System.Runtime.CompilerServices;
 
 namespace OnlineExamSystem.Data;

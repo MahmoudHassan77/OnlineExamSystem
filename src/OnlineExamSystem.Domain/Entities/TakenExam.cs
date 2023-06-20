@@ -1,4 +1,6 @@
 ﻿
+using OnlineExamSystem.Domain.Identity;
+
 namespace OnlineExamSystem.Domain.Entities;
 public class TakenExam
 {

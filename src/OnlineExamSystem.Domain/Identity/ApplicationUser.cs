@@ -1,7 +1,8 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using OnlineExamSystem.Domain.Entities;
 
-namespace OnlineExamSystem.Domain.Entities;
+namespace OnlineExamSystem.Domain.Identity;
 public class ApplicationUser : IdentityUser
 {
     public required string Name { get; set; }

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.7" />
   </ItemGroup>
 

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnlineExamSystem.Contract\OnlineExamSystem.Contract.csproj" />
+    <ProjectReference Include="..\OnlineExamSystem.Contract\OnlineExamSystem.Common.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.DAL\OnlineExamSystem.DAL.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.Data\OnlineExamSystem.Data.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.Domain\OnlineExamSystem.Domain.csproj" />

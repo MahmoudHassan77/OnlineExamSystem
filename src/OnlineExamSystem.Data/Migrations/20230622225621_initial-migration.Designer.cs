@@ -12,7 +12,7 @@ using OnlineExamSystem.Data;
 namespace OnlineExamSystem.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230622011815_initial-migration")]
+    [Migration("20230622225621_initial-migration")]
     partial class initialmigration
     {
         /// <inheritdoc />

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OnlineExamSystem.Contract.Abstract;
+using OnlineExamSystem.Common.Contracts.Repositories;
 using OnlineExamSystem.DAL.Repositories;
 
 namespace OnlineExamSystem.DAL;

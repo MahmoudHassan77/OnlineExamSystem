@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using OnlineExamSystem.Contract.Abstract;
+using OnlineExamSystem.Common.Contracts.Repositories;
+using OnlineExamSystem.Common.Contracts.Services;
 
 namespace OnlineExamSystem.Services.Services;
 public class SetupService : ISetupService

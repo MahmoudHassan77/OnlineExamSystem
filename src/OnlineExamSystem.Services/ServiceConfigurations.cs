@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using OnlineExamSystem.Contract.Abstract;
+using OnlineExamSystem.Common.Contracts.Services;
 using OnlineExamSystem.Services.Services;
 
 namespace OnlineExamSystem.Services;

@@ -1,21 +1,18 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using OnlineExamSystem.Contract.Abstract;
 using OnlineExamSystem.DAL;
 using OnlineExamSystem.Data;
 using OnlineExamSystem.Domain.Identity;
 using OnlineExamSystem.Services;
-using OnlineExamSystem.Services.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Adding Entity Framework
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("onlineExamSystemConnection"))
-);
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 // Adding Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -57,7 +54,6 @@ builder.Services.AddApplicationRepositories();
 
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

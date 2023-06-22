@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
 
-namespace OnlineExamSystem.Contract.Abstract;
+namespace OnlineExamSystem.Common.Contracts.Repositories;
 public interface ISetupRepository
 {
     List<IdentityRole> GetAllRoles();

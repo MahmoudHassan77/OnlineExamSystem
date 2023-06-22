@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using OnlineExamSystem.Contract.Abstract;
+﻿using Microsoft.AspNetCore.Mvc;
+using OnlineExamSystem.Common.Contracts.Services;
 
 namespace OnlineExamSystem.API.Controllers;
 [Route("api/[controller]/[action]")]

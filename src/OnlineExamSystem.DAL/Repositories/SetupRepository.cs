@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using OnlineExamSystem.Contract.Abstract;
+using OnlineExamSystem.Common.Contracts.Repositories;
 using OnlineExamSystem.Data;
 using OnlineExamSystem.Domain.Identity;
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace OnlineExamSystem.Contract.Abstract;
+namespace OnlineExamSystem.Common.Contracts.Services;
 public interface ISetupService
 {
     List<IdentityRole> GetAllRoles();

@@ -1,6 +1,6 @@
 ﻿
 namespace OnlineExamSystem.Domain.Entities;
-public class QuestionOptions
+public class QuestionOption
 {
     public int Id { get; set; }
     public required string Option { get; set; }

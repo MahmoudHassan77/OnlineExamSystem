@@ -13,8 +13,7 @@ public class Exam
     public Course Course { get; set; }
     public virtual ICollection<TakenExam> TakenExams { get; set; }
 
-    public int InstructorId { get; set; }
+    public string InstructorId { get; set; }
     public ApplicationUser Instructor { get; set; }
-    public virtual ICollection<Question>? Questions { get; set; }
     public virtual ICollection<ExamQuestion>? ExamQuestions { get; set; }
 }

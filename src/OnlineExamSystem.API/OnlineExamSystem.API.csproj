@@ -9,16 +9,19 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\OnlineExamSystem.Contract\OnlineExamSystem.Contract.csproj" />
+    <ProjectReference Include="..\OnlineExamSystem.DAL\OnlineExamSystem.DAL.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.Data\OnlineExamSystem.Data.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.Domain\OnlineExamSystem.Domain.csproj" />
+    <ProjectReference Include="..\OnlineExamSystem.Services\OnlineExamSystem.Services.csproj" />
   </ItemGroup>
 
 </Project>

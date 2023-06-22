@@ -19,9 +19,6 @@ public class ExamConfigurations : IEntityTypeConfiguration<Exam>
                .WithMany(x => x.Exams)
                .HasForeignKey(x => x.InstructorId)
                .IsRequired();
-        builder.HasMany(x => x.Questions)
-               .WithMany(x => x.Exams)
-               .UsingEntity<ExamQuestion>();
         builder.ToTable("Exams");
     }
 }

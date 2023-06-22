@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineExamSystem.Data.Configs;
+using OnlineExamSystem.Domain.Entities;
 using OnlineExamSystem.Domain.Identity;
 using System.Runtime.CompilerServices;
 
 namespace OnlineExamSystem.Data;
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
-    public ApplicationDbContext(DbContextOptions options) : base(options)
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
        
     }
@@ -24,4 +25,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "security");
         builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "security");
     }
+
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Exam> Exams { get; set; }
+    public DbSet<ExamQuestion> ExamQuestions { get; set; }
+    public DbSet<Question> Questions { get; set; }
+    public DbSet<QuestionOption> QuestionOptions { get; set; }
+    public DbSet<StudentExam> StudentExams { get; set; }
+    public DbSet<TakenExam> TakenExams { get; set; }
+    public DbSet<TakenExamQuestion> TakenExamQuestions { get; set; }
+    public DbSet<TokenInfo> TokenInfos { get; set; }
 }

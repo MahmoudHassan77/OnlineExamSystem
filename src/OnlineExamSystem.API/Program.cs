@@ -2,23 +2,39 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OnlineExamSystem.Contract.Abstract;
+using OnlineExamSystem.DAL;
 using OnlineExamSystem.Data;
 using OnlineExamSystem.Domain.Identity;
+using OnlineExamSystem.Services;
+using OnlineExamSystem.Services.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Adding Entity Framework
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("onlineExamSystemConnection"))
+);
 
 // Adding Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-// Adding Entity Framework
-builder.Services.AddDbContext<ApplicationDbContext>(options => 
-        options.UseSqlServer(builder.Configuration.GetConnectionString("onlineExamSystemConnection"))
-);
-
 // Adding Authentication
+
+var tokenValidationParameters = new TokenValidationParameters()
+{
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidAudience = builder.Configuration["JWT:ValidAudience"],
+    ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+    ValidateIssuerSigningKey = true,
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
+    ClockSkew = TimeSpan.Zero
+};
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -31,15 +47,12 @@ builder.Services.AddAuthentication(options =>
 {
     options.SaveToken = true;
     options.RequireHttpsMetadata = true;
-    options.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-    };
+    options.TokenValidationParameters = tokenValidationParameters;
 });
+
+// Services
+builder.Services.AddApplicationService();
+builder.Services.AddApplicationRepositories();
 
 
 

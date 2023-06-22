@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.Data", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.Domain", "src\OnlineExamSystem.Domain\OnlineExamSystem.Domain.csproj", "{B54174E0-B87A-4EC5-A86C-BEBE2CB9182B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.Contract", "src\OnlineExamSystem.Contract\OnlineExamSystem.Contract.csproj", "{A8F79640-61C7-4268-8659-951E78EB8754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineExamSystem.Common", "src\OnlineExamSystem.Contract\OnlineExamSystem.Common.csproj", "{A8F79640-61C7-4268-8659-951E78EB8754}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C992DA6-1B4F-4606-9CD9-CBCDD1851DE3}"
 	ProjectSection(SolutionItems) = preProject

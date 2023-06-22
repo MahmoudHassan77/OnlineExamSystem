@@ -12,10 +12,8 @@ public class Question
 
     public int CourseId { get; set; }
     public Course Course { get; set; }
-    public virtual ICollection<QuestionOptions> QuestionOptions { get; set; }
-    public virtual ICollection<Exam>? Exams { get; set; }
+    public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
     public virtual ICollection<ExamQuestion>? ExamQuestions { get; set; }
-    public virtual ICollection<TakenExam>? TakenExams { get; set; }
     public virtual ICollection<TakenExamQuestion>? TakenExamQuestions { get; set; }
 
 }

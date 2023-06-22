@@ -17,12 +17,6 @@ public class TakenExamConfigurations : IEntityTypeConfiguration<TakenExam>
                .WithMany(x => x.TakenExams)
                .HasForeignKey(x => x.ExamId)
                .IsRequired();
-        builder.HasMany(x => x.Students)
-               .WithMany(x => x.TakenExams)
-               .UsingEntity<StudentExam>();
-        builder.HasMany(x => x.Questions)
-               .WithMany(x => x.TakenExams)
-               .UsingEntity<TakenExamQuestion>();
         builder.ToTable("TakenExams");
     }
 }

@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineExamSystem.Contract\OnlineExamSystem.Contract.csproj" />
+    <ProjectReference Include="..\OnlineExamSystem.Data\OnlineExamSystem.Data.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.Domain\OnlineExamSystem.Domain.csproj" />
   </ItemGroup>
 

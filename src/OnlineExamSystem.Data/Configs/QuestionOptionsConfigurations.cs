@@ -4,9 +4,9 @@ using OnlineExamSystem.Domain.Entities;
 
 namespace OnlineExamSystem.Data.Configs;
 
-public class QuestionOptionsConfigurations : IEntityTypeConfiguration<QuestionOptions>
+public class QuestionOptionsConfigurations : IEntityTypeConfiguration<QuestionOption>
 {
-    public void Configure(EntityTypeBuilder<QuestionOptions> builder)
+    public void Configure(EntityTypeBuilder<QuestionOption> builder)
     {
         builder.HasKey(x => x.Id);
         builder.HasOne(x => x.Question)

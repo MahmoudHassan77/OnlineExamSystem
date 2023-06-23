@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineExamSystem.Common.Contracts.Services;
+using OnlineExamSystem.Common.Dtos;
 
 namespace OnlineExamSystem.API.Controllers;
 [Route("api/[controller]/[action]")]
@@ -20,5 +21,11 @@ public class SetupController : ControllerBase
     {
         var roles = _setup.GetAllRoles();
         return Ok(roles);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateRole(AddRoleRequest role)
+    {
+        var result = await _setup.CreateRole(role);
+        return Ok(result);
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using OnlineExamSystem.API.Helpers;
+using OnlineExamSystem.Common.Middlewares;
 using OnlineExamSystem.DAL;
 using OnlineExamSystem.Data;
 using OnlineExamSystem.Domain.Identity;
@@ -55,7 +57,7 @@ builder.Services.AddApplicationRepositories();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDoc();
 
 var app = builder.Build();
 
@@ -66,7 +68,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseCors(options =>
         options.WithOrigins("*")
@@ -74,10 +78,5 @@ app.UseCors(options =>
                .AllowAnyMethod()
                .AllowAnyMethod()
     );
-
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -10,6 +10,7 @@ using OnlineExamSystem.DAL;
 using OnlineExamSystem.Data;
 using OnlineExamSystem.Domain.Identity;
 using OnlineExamSystem.Services;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,6 +51,10 @@ builder.Services.AddAuthentication(options =>
     options.TokenValidationParameters = tokenValidationParameters;
 });
 
+// Serilog
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
+
 // Services
 builder.Services.AddApplicationService()
                 .AddApplicationRepositories()
@@ -70,6 +75,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseSerilogRequestLogging();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();

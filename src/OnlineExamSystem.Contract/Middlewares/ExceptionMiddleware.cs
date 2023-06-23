@@ -3,14 +3,18 @@ using OnlineExamSystem.Common.Exceptions;
 using Newtonsoft.Json;
 using OnlineExamSystem.Common.Dtos;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace OnlineExamSystem.Common.Middlewares;
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
-    public ExceptionMiddleware(RequestDelegate next)
+    readonly ILogger<ExceptionMiddleware> _logger;
+
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
     public async Task InvokeAsync(HttpContext httpContext)
     {
@@ -34,7 +38,7 @@ public class ExceptionMiddleware
             NotFoundException notFoundException => (HttpStatusCode.NotFound, CreateErrorResult(new List<string> { notFoundException.Message }, "NotFound Error", (int)HttpStatusCode.NotFound)),
             _ => (HttpStatusCode.InternalServerError, CreateErrorResult(new List<string> {exception.Message}, "Failure", (int)HttpStatusCode.InternalServerError) )
         };
-
+        _logger.LogError(result);
         context.Response.StatusCode = (int)statusCode;
         return context.Response.WriteAsync(result);
     }

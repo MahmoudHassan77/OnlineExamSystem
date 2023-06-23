@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using OnlineExamSystem.API.Helpers;
 using OnlineExamSystem.Common.Middlewares;
+using OnlineExamSystem.Common.Validators;
 using OnlineExamSystem.DAL;
 using OnlineExamSystem.Data;
 using OnlineExamSystem.Domain.Identity;
@@ -50,8 +51,9 @@ builder.Services.AddAuthentication(options =>
 });
 
 // Services
-builder.Services.AddApplicationService();
-builder.Services.AddApplicationRepositories();
+builder.Services.AddApplicationService()
+                .AddApplicationRepositories()
+                .AddValidatorServices();
 
 
 

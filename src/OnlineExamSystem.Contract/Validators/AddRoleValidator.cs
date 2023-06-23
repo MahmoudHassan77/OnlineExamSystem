@@ -13,14 +13,13 @@ public class AddRoleValidator : AbstractValidator<AddRoleRequest>
         RuleFor(a => a.RoleName)
             .NotEmpty()
             .NotNull()
-            .WithMessage("RoleName is required.");
-        RuleFor(a => a.RoleName)
+            .WithMessage("RoleName is required.")
             .MustAsync(async (name, token) =>
             {
                 var roleExist = await _roleManager.RoleExistsAsync(name);
                 return !roleExist;
             })
-            .WithMessage("RoleName is exist!");
+            .WithMessage("Role name must be unique.");
         
 
     }

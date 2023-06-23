@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 using OnlineExamSystem.Common.Exceptions;
 using Newtonsoft.Json;
 using OnlineExamSystem.Common.Dtos;
@@ -32,30 +26,17 @@ public class ExceptionMiddleware
     private Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         context.Response.ContentType = "application/json";
-        HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-        string result = JsonConvert.SerializeObject(new ErrorDetails
+        
+        var (statusCode, result) = exception switch
         {
-            ErrorMessage = exception.Message,
-            ErrorType = "Failure"
-        });
-
-        switch (exception)
-        {
-            case BadRequestException badRequestException:
-                statusCode = HttpStatusCode.BadRequest;
-                break;
-            case ValidationException validationException:
-                statusCode = HttpStatusCode.BadRequest;
-                result = JsonConvert.SerializeObject(validationException.Errors);
-                break;
-            case NotFoundException notFoundException:
-                statusCode = HttpStatusCode.NotFound;
-                break;
-            default:
-                break;
-        }
+            BadRequestException badRequestException => (HttpStatusCode.BadRequest, CreateErrorResult(new List<string> { badRequestException.Message }, "Bad Request", (int)HttpStatusCode.BadRequest)),
+            ValidationException validationException => (HttpStatusCode.BadRequest, CreateErrorResult(validationException.Errors, "Validation Error", (int)HttpStatusCode.BadRequest)),
+            NotFoundException notFoundException => (HttpStatusCode.NotFound, CreateErrorResult(new List<string> { notFoundException.Message }, "NotFound Error", (int)HttpStatusCode.NotFound)),
+            _ => (HttpStatusCode.InternalServerError, CreateErrorResult(new List<string> {exception.Message}, "Failure", (int)HttpStatusCode.InternalServerError) )
+        };
 
         context.Response.StatusCode = (int)statusCode;
         return context.Response.WriteAsync(result);
     }
+    private static string CreateErrorResult(List<string> errors, string type, int code) => JsonConvert.SerializeObject(new ErrorResponse(errors, type, code));
 }

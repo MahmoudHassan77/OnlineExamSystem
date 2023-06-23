@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using OnlineExamSystem.Common.Contracts.Repositories;
 using OnlineExamSystem.Common.Dtos;
 using OnlineExamSystem.Data;
@@ -19,13 +20,18 @@ public class SetupRepository : ISetupRepository
         _userManager = userManager;
         _roleManager = roleManager;
     }
-    public List<IdentityRole> GetAllRoles()
+    public async Task<IEnumerable<IdentityRole>> GetAllRoles()
     {
-        return _roleManager.Roles.ToList();
+        return await _roleManager.Roles.ToListAsync();
     }
 
     public async Task<IdentityResult> CreateRole(AddRoleRequest role)
     {
        return await _roleManager.CreateAsync(new IdentityRole(role.RoleName));
+    }
+
+    public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
+    {
+        return await _userManager.Users.ToListAsync();
     }
 }

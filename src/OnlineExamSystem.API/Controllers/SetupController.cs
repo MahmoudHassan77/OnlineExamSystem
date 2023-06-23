@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineExamSystem.Common.Contracts.Services;
 using OnlineExamSystem.Common.Dtos;
+using OnlineExamSystem.Common.Exceptions;
 
 namespace OnlineExamSystem.API.Controllers;
 [Route("api/[controller]/[action]")]
@@ -17,9 +18,9 @@ public class SetupController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult GetAllRoles()
+    public async Task<IActionResult> GetAllRoles()
     {
-        var roles = _setup.GetAllRoles();
+        var roles =await _setup.GetAllRoles();
         return Ok(roles);
     }
     [HttpPost]
@@ -28,4 +29,22 @@ public class SetupController : ControllerBase
         var result = await _setup.CreateRole(role);
         return Ok(result);
     }
+    [HttpGet]
+    public async Task<IActionResult> GetAllUsers()
+    {
+        var users = await _setup.GetAllUsers();
+        return Ok(users);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CreateUser()
+    {
+        return Ok();
+    }
+    [HttpPost]
+    public async Task<IActionResult> AddUserToRole()
+    {
+        // Check if user exist, if role exist, if user assigned to this role
+        return Ok();
+    }
+    
 }

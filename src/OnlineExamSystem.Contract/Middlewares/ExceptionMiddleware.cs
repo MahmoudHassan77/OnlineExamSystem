@@ -38,7 +38,7 @@ public class ExceptionMiddleware
             NotFoundException notFoundException => (HttpStatusCode.NotFound, CreateErrorResult(new List<string> { notFoundException.Message }, "NotFound Error", (int)HttpStatusCode.NotFound)),
             _ => (HttpStatusCode.InternalServerError, CreateErrorResult(new List<string> {exception.Message}, "Failure", (int)HttpStatusCode.InternalServerError) )
         };
-        _logger.LogError(result);
+        _logger.LogError(exception.ToString());
         context.Response.StatusCode = (int)statusCode;
         return context.Response.WriteAsync(result);
     }

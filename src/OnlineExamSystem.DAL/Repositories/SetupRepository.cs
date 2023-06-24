@@ -34,4 +34,10 @@ public class SetupRepository : ISetupRepository
     {
         return await _userManager.Users.ToListAsync();
     }
+
+    public async Task<IdentityResult> AddUserToRole(AddUserToRoleDto addUserToRoleDto)
+    {
+        var user = await _userManager.FindByEmailAsync(addUserToRoleDto.Email);
+        return await _userManager.AddToRoleAsync(user, addUserToRoleDto.RoleName);
+    }
 }

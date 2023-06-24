@@ -9,4 +9,5 @@ public interface ISetupRepository
     Task<IEnumerable<IdentityRole>> GetAllRoles();
     Task<IdentityResult> CreateRole(AddRoleRequest role);
     Task<IEnumerable<ApplicationUser>> GetAllUsers();
+    Task<IdentityResult> AddUserToRole(AddUserToRoleDto addUserToRoleDto);
 }

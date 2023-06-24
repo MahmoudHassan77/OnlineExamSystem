@@ -36,15 +36,15 @@ public class SetupController : ControllerBase
         return Ok(users);
     }
     [HttpPost]
-    public async Task<IActionResult> CreateUser()
+    public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
     {
         return Ok();
     }
     [HttpPost]
-    public async Task<IActionResult> AddUserToRole()
+    public async Task<IActionResult> AddUserToRole(AddUserToRoleDto addUserToRoleDto)
     {
-        // Check if user exist, if role exist, if user assigned to this role
-        return Ok();
+        var result = await _setup.AddUserToRole(addUserToRoleDto);
+        return Ok(result);
     }
     
 }

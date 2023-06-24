@@ -12,26 +12,31 @@ public class SetupService : ISetupService
 {
     readonly ISetupRepository _setupRepository;
     readonly RoleManager<IdentityRole> _roleManager;
-    readonly IValidator<AddRoleRequest> _validator;
+    readonly IValidator<AddRoleRequest> _addRoleValidator;
+    readonly IValidator<AddUserToRoleDto> _addUserToRoleValidator;
 
-    public SetupService(ISetupRepository setupRepository, RoleManager<IdentityRole> roleManager, IValidator<AddRoleRequest> validator)
+    public SetupService(ISetupRepository setupRepository,
+        RoleManager<IdentityRole> roleManager,
+        IValidator<AddRoleRequest> addRoleValidator,
+        IValidator<AddUserToRoleDto> addUserToRoleValidator)
     {
         _setupRepository = setupRepository;
         _roleManager = roleManager;
-        _validator = validator;
+        _addRoleValidator = addRoleValidator;
+        _addUserToRoleValidator = addUserToRoleValidator;
     }
 
     public async Task<BaseResponse> CreateRole(AddRoleRequest newRole)
     {
-        var validationResult = await _validator.ValidateAsync(newRole);
+        var validationResult = await _addRoleValidator.ValidateAsync(newRole);
         if (!validationResult.IsValid) throw new Exceptions.ValidationException(validationResult);
 
         var result = _setupRepository.CreateRole(newRole);
         if (result.Result.Succeeded)
         {
-            return new BaseResponse(Guid.NewGuid().ToString(), "New role is added successfully.", null, true);
+            return new BaseResponse( "New role is added successfully.", null, true);
         }
-        return new BaseResponse(Guid.NewGuid().ToString(), "Failed to add new role.", result.Result.Errors.Select(a => a.Description).ToList(), false);
+        return new BaseResponse("Failed to add new role.", result.Result.Errors.Select(a => a.Description).ToList(), false);
     }
 
     public async Task<IEnumerable<IdentityRole>> GetAllRoles()
@@ -43,4 +48,17 @@ public class SetupService : ISetupService
     {
         return await _setupRepository.GetAllUsers();
     }
+    public async Task<BaseResponse> AddUserToRole(AddUserToRoleDto addUserToRoleDto)
+    {
+        var validationResult = await _addUserToRoleValidator.ValidateAsync(addUserToRoleDto);
+        if (!validationResult.IsValid) throw new Exceptions.ValidationException(validationResult);
+
+        var result = await _setupRepository.AddUserToRole(addUserToRoleDto);
+        if (result.Succeeded)
+        {
+            return new BaseResponse("User is added to role successfully.", null, true);
+        }
+        return new BaseResponse("Failed to add user to this role.", result.Errors.Select(a => a.Description).ToList(), false);
+    }
+
 }

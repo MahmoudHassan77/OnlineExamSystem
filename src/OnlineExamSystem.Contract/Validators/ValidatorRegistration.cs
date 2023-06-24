@@ -8,6 +8,8 @@ public static class ValidatorRegistration
     public static IServiceCollection AddValidatorServices(this IServiceCollection services)
     {
         services.AddTransient<IValidator<AddRoleRequest>, AddRoleValidator>();
+        services.AddTransient<IValidator<AddUserToRoleDto>, AddUserToRoleValidator>();
+        services.AddTransient<IValidator<CreateUserDto>, CreateUserValidator>();
         return services;
     }
 }

@@ -10,6 +10,7 @@ public static class ValidatorRegistration
         services.AddTransient<IValidator<AddRoleRequest>, AddRoleValidator>();
         services.AddTransient<IValidator<AddUserToRoleDto>, AddUserToRoleValidator>();
         services.AddTransient<IValidator<CreateUserDto>, CreateUserValidator>();
+        services.AddTransient<IValidator<string>, DeleteRoleValidator>();
         return services;
     }
 }

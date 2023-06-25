@@ -38,7 +38,8 @@ public class SetupController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateUser(CreateUserDto createUserDto)
     {
-        return Ok();
+        var result = await _setup.CreateUser(createUserDto);
+        return Ok(result);
     }
     [HttpPost]
     public async Task<IActionResult> AddUserToRole(AddUserToRoleDto addUserToRoleDto)
@@ -46,5 +47,13 @@ public class SetupController : ControllerBase
         var result = await _setup.AddUserToRole(addUserToRoleDto);
         return Ok(result);
     }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteRole(string id)
+    {
+        var result = await _setup.DeleteRole(id);
+        return Ok(result);
+    }
+
     
 }

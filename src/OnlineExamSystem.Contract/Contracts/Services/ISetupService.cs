@@ -10,4 +10,5 @@ public interface ISetupService
     Task<IEnumerable<ApplicationUser>> GetAllUsers();
     Task<BaseResponse> AddUserToRole(AddUserToRoleDto addUserToRoleDto);
     Task<BaseResponse> CreateUser(CreateUserDto createUserDto);
+    Task<BaseResponse> DeleteRole(string id);
 }

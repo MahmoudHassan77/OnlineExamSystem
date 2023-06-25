@@ -40,4 +40,15 @@ public class SetupRepository : ISetupRepository
         var user = await _userManager.FindByEmailAsync(addUserToRoleDto.Email);
         return await _userManager.AddToRoleAsync(user, addUserToRoleDto.RoleName);
     }
+
+    public Task<IdentityResult> CreateUser(CreateUserDto createUserDto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<IdentityResult> DeleteRole(string id)
+    {
+        var role = await _roleManager.FindByIdAsync(id);
+        return await _roleManager.DeleteAsync(role);
+    }
 }

@@ -4,7 +4,6 @@ using OnlineExamSystem.Common.Contracts.Repositories;
 using OnlineExamSystem.Common.Contracts.Services;
 using OnlineExamSystem.Common.Dtos;
 using Exceptions =OnlineExamSystem.Common.Exceptions;
-using OnlineExamSystem.Common.Validators;
 using OnlineExamSystem.Domain.Identity;
 
 namespace OnlineExamSystem.Services.Services;

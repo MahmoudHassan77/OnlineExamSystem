@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnlineExamSystem.Contract\OnlineExamSystem.Common.csproj" />
+    <ProjectReference Include="..\OnlineExamSystem.Common\OnlineExamSystem.Common.csproj" />
   </ItemGroup>
 
 </Project>

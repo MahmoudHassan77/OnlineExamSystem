@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 
 namespace OnlineExamSystem.Common.Validators;
-class DeleteRoleValidator : AbstractValidator<string>
+public class DeleteRoleValidator : AbstractValidator<string>
 {
     readonly RoleManager<IdentityRole> _roleManager;
 
@@ -10,8 +10,8 @@ class DeleteRoleValidator : AbstractValidator<string>
     {
         _roleManager = roleManager;
         RuleFor(x => x)
-            .NotEmpty()
             .NotNull()
+            .NotEmpty()
             .WithMessage("Role ID is required.")
             .MustAsync(async (id, token) =>
             {

@@ -4,25 +4,25 @@ using OnlineExamSystem.Common.Dtos;
 using OnlineExamSystem.Domain.Identity;
 
 namespace OnlineExamSystem.Common.Validators;
-public class AddUserToRoleValidator : AbstractValidator<AddUserToRoleDto>
+public class DeleteUserFromRoleValidator : AbstractValidator<DeleteUserfromRoleDto>
 {
     readonly UserManager<ApplicationUser> _userManager;
     readonly RoleManager<IdentityRole> _roleManager;
 
-    public AddUserToRoleValidator(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+    public DeleteUserFromRoleValidator(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _roleManager = roleManager;
-        // Check if user exist, if role exist, if user assigned to this role.
         RuleFor(e => e.RoleName)
-            .NotEmpty()
-            .WithMessage("{PropertyName} is required.")
-            .MustAsync(async (role, token) =>
-            {
-                var roleExist = await _roleManager.RoleExistsAsync(role);
-                return roleExist;
-            })
-            .WithMessage("{PropertyName} doesn't exist.");
+           .NotEmpty()
+           .NotNull()
+           .WithMessage("Role name is required.")
+           .MustAsync(async (role, token) =>
+           {
+               var roleExist = await _roleManager.RoleExistsAsync(role);
+               return roleExist;
+           })
+           .WithMessage("{PropertyName} doesn't exist.");
         RuleFor(e => e.Email)
             .NotEmpty()
             .WithMessage("{PropertyName} is required.")
@@ -31,15 +31,13 @@ public class AddUserToRoleValidator : AbstractValidator<AddUserToRoleDto>
             .MustAsync(async (x, email, token) =>
             {
                 var user = await _userManager.FindByEmailAsync(email);
-                return !await _userManager.IsInRoleAsync(user, x.RoleName);
-            })
-            .WhenAsync(async (x, context, token) => await CheckUserExists(x.Email), ApplyConditionTo.CurrentValidator)
-            .WithMessage("User is already assigned to this role.");
-
-
-
+                return await _userManager.IsInRoleAsync(user, x.RoleName);
+            }).WhenAsync(async (x, context, token) =>
+            {
+                return await CheckUserExists(x.Email);
+            }, ApplyConditionTo.CurrentValidator)
+            .WithMessage("User is not assigned to this role.");
     }
-
     private async Task<bool> CheckUserExists(string email)
     {
         var user = await _userManager.FindByEmailAsync(email);

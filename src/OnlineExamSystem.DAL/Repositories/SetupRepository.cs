@@ -41,14 +41,36 @@ public class SetupRepository : ISetupRepository
         return await _userManager.AddToRoleAsync(user, addUserToRoleDto.RoleName);
     }
 
-    public Task<IdentityResult> CreateUser(CreateUserDto createUserDto)
+    public async Task<IdentityResult> CreateUser(CreateUserDto createUserDto, string role)
     {
-        throw new NotImplementedException();
+        ApplicationUser newUser = new ApplicationUser
+        {
+            Name = createUserDto.Name,
+            Email = createUserDto.Email,
+            PhoneNumber = createUserDto.PhoneNumber,
+            UserName = createUserDto.Username.ToLower(),
+            Age = createUserDto.Age,
+        };
+        var userAdded = await _userManager.CreateAsync(newUser, createUserDto.Password);
+        if(userAdded.Succeeded)
+         return await _userManager.AddToRoleAsync(newUser, role);
+        return userAdded;
     }
 
     public async Task<IdentityResult> DeleteRole(string id)
     {
         var role = await _roleManager.FindByIdAsync(id);
         return await _roleManager.DeleteAsync(role);
+    }
+    public async Task<IdentityResult> DeleteUserFromRole(DeleteUserfromRoleDto deleteUserfromRole)
+    {
+        var user = await _userManager.FindByEmailAsync(deleteUserfromRole.Email);
+        return await _userManager.RemoveFromRoleAsync(user, deleteUserfromRole.RoleName);
+    }
+    public async Task<IEnumerable<string>> GetUserRoles(GetUserRolesDto getUserRolesDto)
+    {
+        var user = await _userManager.FindByEmailAsync(getUserRolesDto.Email);
+        return await _userManager.GetRolesAsync(user);
+
     }
 }

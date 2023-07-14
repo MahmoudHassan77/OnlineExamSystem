@@ -8,6 +8,7 @@ public static class ServiceConfigurations
     public static IServiceCollection AddApplicationService(this IServiceCollection service)
     {
         service.AddScoped<ISetupService, SetupService>();
+        service.AddTransient<IValidationService, ValidationService>();
 
         return service;
     }

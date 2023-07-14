@@ -12,7 +12,6 @@ public class AddRoleValidator : AbstractValidator<AddRoleRequest>
         _roleManager = roleManager;
         RuleFor(a => a.RoleName)
             .NotEmpty()
-            .NotNull()
             .WithMessage("RoleName is required.")
             .MustAsync(async (name, token) =>
             {

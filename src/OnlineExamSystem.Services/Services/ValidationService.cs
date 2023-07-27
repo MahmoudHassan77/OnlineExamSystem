@@ -22,10 +22,12 @@ public class ValidationService : IValidationService
                 { typeof(string), typeof(DeleteRoleValidator) },
                 { typeof(GetUserRolesDto), typeof(GetUserRolesValidator) },
                 { typeof(DeleteUserfromRoleDto), typeof(DeleteUserFromRoleValidator) },
+                { typeof(DeleteUserDto), typeof(DeleteUserValidator) },
+                { typeof(LoginDto), typeof(LoginDtoValidator) },
             };
     }
 
-    private AbstractValidator<T> GetValidator<T>()
+    private IValidator<T> GetValidator<T>()
     {
         var modelType = typeof(T);
         var hasValidator = this._validators.ContainsKey(modelType);
@@ -35,17 +37,15 @@ public class ValidationService : IValidationService
         }
 
         var validatorType = this._validators[modelType];
-        var validator = _serviceProvider.GetService(validatorType) as AbstractValidator<T>;
+        var validator = _serviceProvider.GetService(validatorType) as IValidator<T>;
         return validator;
     }
 
     public async Task EnsureValid<T>(T model)
     {
         var validator = this.GetValidator<T>();
-        var result = validator.Validate(model);
+        var result = await validator.ValidateAsync(model);
         if (!result.IsValid)
-        {
             throw new Exceptions.ValidationException(result);
-        }
     }
 }

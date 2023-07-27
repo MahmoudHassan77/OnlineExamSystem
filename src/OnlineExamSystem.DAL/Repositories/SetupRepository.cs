@@ -38,7 +38,7 @@ public class SetupRepository : ISetupRepository
     public async Task<IdentityResult> AddUserToRole(AddUserToRoleDto addUserToRoleDto)
     {
         var user = await _userManager.FindByEmailAsync(addUserToRoleDto.Email);
-        return await _userManager.AddToRoleAsync(user, addUserToRoleDto.RoleName);
+        return await _userManager.AddToRoleAsync(user!, addUserToRoleDto.RoleName);
     }
 
     public async Task<IdentityResult> CreateUser(CreateUserDto createUserDto, string role)
@@ -60,17 +60,23 @@ public class SetupRepository : ISetupRepository
     public async Task<IdentityResult> DeleteRole(string id)
     {
         var role = await _roleManager.FindByIdAsync(id);
-        return await _roleManager.DeleteAsync(role);
+        return await _roleManager.DeleteAsync(role!);
     }
     public async Task<IdentityResult> DeleteUserFromRole(DeleteUserfromRoleDto deleteUserfromRole)
     {
         var user = await _userManager.FindByEmailAsync(deleteUserfromRole.Email);
-        return await _userManager.RemoveFromRoleAsync(user, deleteUserfromRole.RoleName);
+        return await _userManager.RemoveFromRoleAsync(user!, deleteUserfromRole.RoleName);
     }
     public async Task<IEnumerable<string>> GetUserRoles(GetUserRolesDto getUserRolesDto)
     {
         var user = await _userManager.FindByEmailAsync(getUserRolesDto.Email);
-        return await _userManager.GetRolesAsync(user);
+        return await _userManager.GetRolesAsync(user!);
 
+    }
+
+    public async Task<IdentityResult> DeleteUser(string id)
+    {
+        var user = await _userManager.FindByIdAsync(id);
+        return await _userManager.DeleteAsync(user!);
     }
 }

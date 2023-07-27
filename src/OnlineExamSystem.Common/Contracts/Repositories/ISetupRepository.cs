@@ -14,4 +14,5 @@ public interface ISetupRepository
     Task<IdentityResult> DeleteRole(string id);
     Task<IdentityResult> DeleteUserFromRole(DeleteUserfromRoleDto deleteUserfromRole);
     Task<IEnumerable<string>> GetUserRoles(GetUserRolesDto getUserRolesDto);
+    Task<IdentityResult> DeleteUser(string id);
 }

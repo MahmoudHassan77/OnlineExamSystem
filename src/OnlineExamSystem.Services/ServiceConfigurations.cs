@@ -9,6 +9,7 @@ public static class ServiceConfigurations
     {
         service.AddScoped<ISetupService, SetupService>();
         service.AddTransient<IValidationService, ValidationService>();
+        service.AddScoped<IAuthService, AuthService>();
 
         return service;
     }

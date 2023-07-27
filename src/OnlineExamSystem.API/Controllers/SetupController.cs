@@ -2,7 +2,6 @@
 using OnlineExamSystem.Common.Contracts.Services;
 using OnlineExamSystem.Common.Dtos;
 using OnlineExamSystem.Common.Enums;
-using OnlineExamSystem.Common.Exceptions;
 
 namespace OnlineExamSystem.API.Controllers;
 [Route("api/[controller]/[action]")]
@@ -70,6 +69,13 @@ public class SetupController : ControllerBase
     public async Task<IActionResult> DeleteUserFromRole(DeleteUserfromRoleDto deleteUserfromRole)
     {
         var result = await _setup.DeleteUserFromRole(deleteUserfromRole);
+        return Ok(result);
+    }
+    [HttpPost]
+    public async Task<IActionResult> DeleteUser(DeleteUserDto deleteUserDto)
+    {
+        var result = await _setup.DeleteUser(deleteUserDto);
+        if (!result.Success) return BadRequest(result);
         return Ok(result);
     }
 }

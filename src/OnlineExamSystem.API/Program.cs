@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using OnlineExamSystem.API.Helpers;
+using OnlineExamSystem.Common.Dtos;
 using OnlineExamSystem.Common.Middlewares;
 using OnlineExamSystem.Common.Validators;
 using OnlineExamSystem.DAL;
@@ -12,6 +13,7 @@ using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
 // Adding Entity Framework
 builder.Services.ConfigurePersistenceServices(builder.Configuration);

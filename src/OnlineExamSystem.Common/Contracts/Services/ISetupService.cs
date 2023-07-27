@@ -13,5 +13,6 @@ public interface ISetupService
     Task<BaseResponse> DeleteRole(string id);
     Task<BaseResponse> DeleteUserFromRole(DeleteUserfromRoleDto deleteUserfromRole);
     Task<IEnumerable<string>> GetUserRoles(GetUserRolesDto getUserRolesDto);
+    Task<BaseResponse> DeleteUser(DeleteUserDto deleteUserDto);
 
 }

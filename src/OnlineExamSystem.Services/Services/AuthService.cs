@@ -16,7 +16,7 @@ public class AuthService : IAuthService
         _setupRepository = setupRepository;
         _authRepository = authRepository;
     }
-    public async Task<LoginResponse> Login(LoginDto cred)
+    public async Task<AuthResponse> Login(LoginDto cred)
     {
         await _validationService.EnsureValid(cred);
         var result = await _authRepository.Login(cred);
@@ -36,6 +36,7 @@ public class AuthService : IAuthService
     public async Task<BaseResponse> Register(CreateUserDto user, string role)
     {
         await _validationService.EnsureValid(user);
+
         var result = await _setupRepository.CreateUser(user, role);
         return HelperMethods.validateResponse(result, "Failed to add new user.", "User is added successfully.");
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineExamSystem.Common.Contracts.Services;
 using OnlineExamSystem.Common.Dtos;
 using OnlineExamSystem.Common.Enums;
@@ -30,6 +31,7 @@ public class SetupController : ControllerBase
         if (!result.Success) return BadRequest(result); 
         return Ok(result);
     }
+    [Authorize(Roles ="admin")]
     [HttpGet]
     public async Task<IActionResult> GetAllUsers()
     {
